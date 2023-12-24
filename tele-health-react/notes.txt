@@ -1,0 +1,7 @@
+npx create-react-app .
+npm start
+npm install react-bootstrap bootstrap
+npm install axios
+
+npm install jquery
+npm install react-router-dom Router, Routes, Route, Line, useNavigate, useParms

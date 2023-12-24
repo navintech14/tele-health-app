@@ -1,0 +1,68 @@
+virtualenv D:\Django\jorunal\journalEnv   virtualenv venv --python=python3.8
+journalEnv\Scripts\activate
+pip install django
+django-admin startproject journal .
+python manage.py runserver
+#set correct python in vs code
+python manage.py startapp journalApp
+pip install mysqlclient
+
+
+--CREATE A CUSTOM USER BEFORE INITIAL MIGRATION
+from django.db import models
+from django.contrib.auth.models import AbstractUser
+class CustomUser(AbstractUser):
+    pass
+AUTH_USER_MODEL = "vaccine_app.User"
+
+
+# inmysql    CREATE DATABASE journaldb
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "jorunaldb",
+        "HOST": "localhost",
+        "USER": "root",
+        "PASSWORD": "navinsql",
+    }
+}
+
+
+
+python manage.py createsuperuser
+python manage.py makemigrations
+python manage.py migrate
+
+pip install django-debug-toolbar
+
+create urls.py
+set url path in base
+path("", include("vaccine_app.urls")),
+path("", views.index),
+
+ModelBaker for dummy data
+
+
+pip install djangorestframework
+
+from rest_framework.decorators import api_view 
+from rest_framework.response import Response
+
+
+@api_view()
+def index(request):
+    return Response("hello")
+
+urlpatterns = [
+    path("journal_entry/", views.journal_entry_list),
+    path("journal_entry/<int:id>/", views.journal_details)
+]
+
+User._meta.get_fields()
+
+
+JOSHER
+
+
+
+request.user
